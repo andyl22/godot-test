@@ -18,21 +18,11 @@ func _ready():
 	for res in common_resolutions:
 		resolution_dropdown.add_item("%sx%s" % [res.x, res.y])
 
-	# Connect signals
-	resolution_dropdown.connect("item_selected", Callable(self, "_on_resolution_selected"))
-	fullscreen_checkbox.connect("toggled", Callable(self, "_on_fullscreen_toggled"))
+func _on_resolution_option_button_item_selected(index: int) -> void:
+	DisplayServer.window_set_size(common_resolutions[index])
 
-func _on_resolution_selected(index):
-	var res = common_resolutions[index]
-	DisplayServer.window_set_size(res)
-	if fullscreen_checkbox.pressed:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-
-func _on_fullscreen_toggled(pressed):
-	if pressed:
+func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
+	if(toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		# Keep current resolution
-		var index = resolution_dropdown.selected
-		DisplayServer.window_set_size(common_resolutions[index])

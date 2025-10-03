@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs4605m5xvs0"]
+
+[ext_resource type="Script" uid="uid://cp8tir35mlt8f" path="res://scenes/ui/hud/hud_control.gd" id="1_1oqmi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26w3c"]
+bg_color = Color(0.8951372, 0, 0.13534188, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1oqmi"]
+
+[node name="Hud" type="CanvasLayer"]
+
+[node name="HudControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1oqmi")
+
+[node name="HealthBar" type="ProgressBar" parent="HudControl"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 992.0
+offset_right = 163.0
+offset_bottom = 1040.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_26w3c")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_1oqmi")
+show_percentage = false

@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://t1h8l7iu30tt"]
+
+[ext_resource type="Script" uid="uid://d21dt2a5iodje" path="res://scenes/ui/menus/settings_menu/resolution_button.gd" id="1_2ac8o"]
+[ext_resource type="Script" uid="uid://b75ga0a4sc4yg" path="res://scenes/ui/menus/settings_menu/back_button.gd" id="2_jphip"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_jphip")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 35.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_2ac8o")
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FullscreenCheckBox" type="CheckBox" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Fullscreen"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="item_selected" from="VBoxContainer/VBoxContainer/ResolutionOptionButton" to="VBoxContainer/VBoxContainer" method="_on_resolution_option_button_item_selected"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/ResolutionOptionButton" to="VBoxContainer/VBoxContainer" method="_on_resolution_option_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/FullscreenCheckBox" to="VBoxContainer/VBoxContainer" method="_on_fullscreen_check_box_pressed"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer/FullscreenCheckBox" to="VBoxContainer/VBoxContainer" method="_on_fullscreen_check_box_toggled"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="VBoxContainer" method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

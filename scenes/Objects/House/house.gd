@@ -22,5 +22,6 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _input(event):
 	if event.is_action_pressed("use") and is_door_interactable:
-		print("Load new zone")
+		GameManager.set_scene("game02")
 		is_door_interactable = false
+		GlobalState.set_health(-10.0)

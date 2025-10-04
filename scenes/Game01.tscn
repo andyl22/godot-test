@@ -1211,9 +1211,10 @@ tile_set = SubResource("TileSet_bt3t1")
 
 [node name="House" parent="." instance=ExtResource("4_4ikso")]
 position = Vector2(610, 157)
+scale = Vector2(0.99999994, 0.99999994)
 
 [node name="MainCharacter" parent="." instance=ExtResource("2_hd3ii")]
-position = Vector2(440, 151)
+position = Vector2(671.0001, 565.00006)
 
 [node name="Fences" type="Node2D" parent="."]
 position = Vector2(193, 448)

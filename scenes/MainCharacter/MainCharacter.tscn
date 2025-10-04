@@ -186,7 +186,7 @@ animations = [{
 }]
 
 [node name="MainCharacter" type="CharacterBody2D"]
-scale = Vector2(3.5, 3.5)
+scale = Vector2(2.5, 2.5)
 script = ExtResource("1_7cokx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -198,3 +198,7 @@ position = Vector2(6.811959e-08, 0)
 scale = Vector2(0.9999998, 0.9999998)
 sprite_frames = SubResource("SpriteFrames_2xpiu")
 animation = &"walk_up"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+zoom = Vector2(2, 2)

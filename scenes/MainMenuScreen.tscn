@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4451empk2ksw"]
 
 [ext_resource type="Texture2D" uid="uid://btm6i52w65dlo" path="res://assets/art/background.png" id="1_k1a11"]
-[ext_resource type="PackedScene" uid="uid://6n3mcis2r7bg" path="res://scenes/ui/menus/MenusContainer.tscn" id="2_2fhk7"]
+[ext_resource type="PackedScene" uid="uid://ca1iixtqwnrjd" path="res://scenes/ui/menus/MenusContainer.tscn" id="2_2fhk7"]
 
 [node name="MainMenuBackground" type="Control"]
 layout_mode = 3
@@ -10,11 +10,24 @@ anchors_preset = 0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -671.0
+offset_top = -545.0
+offset_right = 693.0
+offset_bottom = 539.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_k1a11")
 
 [node name="MenusContainer" parent="CanvasLayer" instance=ExtResource("2_2fhk7")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2

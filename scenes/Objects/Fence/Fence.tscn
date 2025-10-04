@@ -5,7 +5,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uqlga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqlga"]
-size = Vector2(139, 35)
+size = Vector2(139, 8)
 
 [node name="Fence" type="RigidBody2D"]
 mass = 0.001
@@ -20,5 +20,5 @@ region_enabled = true
 region_rect = Rect2(16.63832, 0.6687927, 45.367065, 16.65651)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(24.5, -1.5)
+position = Vector2(26, -14)
 shape = SubResource("RectangleShape2D_uqlga")

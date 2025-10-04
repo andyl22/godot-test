@@ -4,4 +4,4 @@ signal back_to_menu
 
 func _input(_event):
 	if Input.is_action_pressed("ui_cancel"): # Triggered by pressing ESC or a mapped key
-		emit_signal("back_to_menu")
+		GameManager.set_scene("menu")

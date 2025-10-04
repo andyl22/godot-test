@@ -35,5 +35,6 @@ text = "Settings"
 layout_mode = 2
 text = "Exit"
 
+[connection signal="pressed" from="VBoxContainer/MainButtons/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]

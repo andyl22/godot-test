@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dowad7ccj5e80"]
+
+[ext_resource type="Texture2D" uid="uid://dcd1sn4sm1s10" path="res://assets/art/TinyFarm/Objects/House.png" id="1_uqlga"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uqlga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqlga"]
+size = Vector2(252, 118)
+
+[node name="House" type="RigidBody2D"]
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_uqlga")
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(22.250004, 0)
+scale = Vector2(3.5779223, 3)
+texture = ExtResource("1_uqlga")
+region_enabled = true
+region_rect = Rect2(146.5, 0, 77.5, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17, -10)
+shape = SubResource("RectangleShape2D_uqlga")

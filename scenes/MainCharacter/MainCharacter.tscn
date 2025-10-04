@@ -1,11 +1,12 @@
 [gd_scene load_steps=28 format=3 uid="uid://bif00hhd3ttxe"]
 
 [ext_resource type="Script" uid="uid://du6u6w6scghbu" path="res://scenes/MainCharacter/main_character.gd" id="1_7cokx"]
-[ext_resource type="Texture2D" uid="uid://buup8kbrs5a0t" path="res://assets/art/Character/Idle.png" id="2_7cokx"]
-[ext_resource type="Texture2D" uid="uid://bntmshl706c1n" path="res://assets/art/Character/Walk.png" id="3_3tfr8"]
+[ext_resource type="Texture2D" uid="uid://buup8kbrs5a0t" path="res://assets/art/TinyFarm/Character/Idle.png" id="2_7cokx"]
+[ext_resource type="Texture2D" uid="uid://bntmshl706c1n" path="res://assets/art/TinyFarm/Character/Walk.png" id="3_3tfr8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_88ffu"]
-size = Vector2(35, 28)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7cokx"]
+radius = 5.5
+height = 15.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxuim"]
 atlas = ExtResource("2_7cokx")
@@ -185,12 +186,15 @@ animations = [{
 }]
 
 [node name="MainCharacter" type="CharacterBody2D"]
+scale = Vector2(3.5, 3.5)
 script = ExtResource("1_7cokx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 2)
-shape = SubResource("RectangleShape2D_88ffu")
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_7cokx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(6.811959e-08, 0)
+scale = Vector2(0.9999998, 0.9999998)
 sprite_frames = SubResource("SpriteFrames_2xpiu")
 animation = &"walk_up"

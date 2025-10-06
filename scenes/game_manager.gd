@@ -17,7 +17,9 @@ func deferred_set_scene(state: String) -> void:
 	match state:
 		"menu": scene_path = "res://scenes/MainMenuScreen.tscn"
 		"game01": scene_path = "res://scenes/Game01.tscn"
-		"game02": scene_path = "res://scenes/Game02.tscn"
+		"home": scene_path = "res://scenes/Home.tscn"
+		"mines": scene_path = "res://scenes/Mines.tscn"
+		"town": scene_path = "res://scenes/Town.tscn"
 		_:
 			push_warning("Unknown menu state: %s" % state)
 			return

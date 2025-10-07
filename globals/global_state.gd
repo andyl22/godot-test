@@ -11,4 +11,4 @@ func _ready() -> void:
 	
 func set_health(v) -> void:
 	health += v
-	SignalBus.health_changed.emit(health)
+	SignalBus._health_changed.emit(health)

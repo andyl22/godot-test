@@ -4,7 +4,7 @@ extends CanvasLayer
 
 func _ready():
 	health_bar.value = GlobalState.health
-	SignalBus.health_changed.connect(_on_player_health_changed)
+	SignalBus._health_changed.connect(_on_player__health_changed)
 	
-func _on_player_health_changed(newHealthValue):
+func _on_player__health_changed(newHealthValue):
 	health_bar.value = newHealthValue

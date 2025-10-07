@@ -1,8 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://bif00hhd3ttxe"]
+[gd_scene load_steps=35 format=3 uid="uid://bif00hhd3ttxe"]
 
 [ext_resource type="Script" uid="uid://du6u6w6scghbu" path="res://scenes/MainCharacter/main_character.gd" id="1_7cokx"]
 [ext_resource type="Texture2D" uid="uid://buup8kbrs5a0t" path="res://assets/art/TinyFarm/Character/Idle.png" id="2_7cokx"]
 [ext_resource type="Texture2D" uid="uid://bntmshl706c1n" path="res://assets/art/TinyFarm/Character/Walk.png" id="3_3tfr8"]
+[ext_resource type="AudioStream" uid="uid://l3t27f315l1e" path="res://assets/music/walking.mp3" id="4_3tfr8"]
+[ext_resource type="AudioStream" uid="uid://bn5igoj2w2lyd" path="res://assets/music/sword.mp3" id="5_xxuim"]
+[ext_resource type="Texture2D" uid="uid://laovis7wy5qn" path="res://assets/art/Warrior_Animations/VFX 1/sprite-sheet.png" id="6_vp3qf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7cokx"]
 radius = 5.5
@@ -185,6 +188,46 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7saij"]
+atlas = ExtResource("6_vp3qf")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cm86f"]
+atlas = ExtResource("6_vp3qf")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8vr4"]
+atlas = ExtResource("6_vp3qf")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f2713"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7saij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cm86f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8vr4")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"slash",
+"speed": 15.0
+}]
+
 [node name="MainCharacter" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
 script = ExtResource("1_7cokx")
@@ -197,8 +240,29 @@ shape = SubResource("CapsuleShape2D_7cokx")
 position = Vector2(6.811959e-08, 0)
 scale = Vector2(0.9999998, 0.9999998)
 sprite_frames = SubResource("SpriteFrames_2xpiu")
-animation = &"walk_up"
+animation = &"walk_down"
+frame_progress = 0.8626991
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
 zoom = Vector2(2, 2)
+
+[node name="Walking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3tfr8")
+
+[node name="SwordSlice" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_xxuim")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Slash" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -0.3999989)
+rotation = 2.3368876
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_f2713")
+animation = &"slash"
+frame = 4
+frame_progress = 1.0
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

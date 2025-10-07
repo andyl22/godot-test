@@ -1,7 +1,7 @@
 # SignalBus.gd
 extends Node
 
-signal game_active
-signal game_inactive
+signal _game_active
+signal _game_inactive
 
-signal health_changed
+signal _health_changed

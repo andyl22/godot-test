@@ -249,6 +249,7 @@ zoom = Vector2(2, 2)
 
 [node name="Walking" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_3tfr8")
+volume_db = -25.0
 
 [node name="SwordSlice" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_xxuim")

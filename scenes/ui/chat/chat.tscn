@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4eodob0im3wq"]
+
+[ext_resource type="Script" uid="uid://cyt0oicme5sq8" path="res://scenes/ui/chat/box.gd" id="1_nw63w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrybh"]
+bg_color = Color(0.9433957, 0.95601386, 0.8411785, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.22310287, 0.22310293, 0.22310272, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Chat" type="CanvasLayer"]
+process_mode = 3
+
+[node name="Box" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_nw63w")
+
+[node name="TextureRect" type="Panel" parent="Box"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -687.0
+offset_top = -377.0
+offset_right = 713.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lrybh")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Box/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Box/TextureRect/MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24

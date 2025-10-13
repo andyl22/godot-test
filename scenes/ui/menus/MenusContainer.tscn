@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://6n3mcis2r7bg"]
 
-[ext_resource type="Script" path="res://scenes/ui/menus/menus_container.gd" id="1_e45lx"]
+[ext_resource type="Script" uid="uid://b5oo5fgmakjqb" path="res://scenes/ui/menus/menus_container.gd" id="1_e45lx"]
 [ext_resource type="AudioStream" uid="uid://vlymwl436kgj" path="res://assets/music/menu.mp3" id="2_im28a"]
 
 [node name="MenusContainer" type="Control"]
@@ -10,5 +10,4 @@ script = ExtResource("1_e45lx")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_im28a")
-autoplay = true
 parameters/looping = true

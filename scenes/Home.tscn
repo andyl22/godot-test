@@ -1796,7 +1796,7 @@ metadata/_edit_group_ = true
 position = Vector2(750.00006, 697)
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(752, 785)
+position = Vector2(752, 784)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

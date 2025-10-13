@@ -1,13 +1,13 @@
-extends Control
+extends CanvasLayer
 
-@onready var dialogue_label: RichTextLabel = $TextureRect/MarginContainer/RichTextLabel
+@onready var dialogue_label: RichTextLabel = $Box/TextureRect/MarginContainer/RichTextLabel
 var typewriter_tween: Tween = null 
 
-var dialogue_lines: Array[String] = [
-	"Hello there, traveler! Did you see the sun rise today?",
-	"It was truly a beautiful sight.",
-    "Be sure to watch out for the goblins on the road."
-]
+var dialogue_lines: Array = ["..."]:
+	set(value):
+		dialogue_lines = value
+	get:
+		return dialogue_lines
 
 func _ready():
 	_display_next_line()
@@ -16,10 +16,9 @@ func _unhandled_input(event: InputEvent):
 	if event.is_action_pressed("ui_accept"):
 		get_viewport().set_input_as_handled()
 
-		if typewriter_tween != null and typewriter_tween.is_running():
-			_skip_typing()
-		else:
-			_display_next_line()
+		if typewriter_tween != null and typewriter_tween.is_running(): _skip_typing()
+		elif !dialogue_lines.size(): _end_dialogue()
+		else: _display_next_line()
 			
 func _display_next_line():
 	while(dialogue_lines.size()):
@@ -37,7 +36,7 @@ func _display_next_line():
 		typewriter_tween.tween_interval(3)
 		
 		await typewriter_tween.finished
-	_end_dialogue()
+		if !dialogue_lines.size(): _end_dialogue()
 
 func _skip_typing():
 	if typewriter_tween != null and typewriter_tween.is_running():
@@ -47,3 +46,7 @@ func _skip_typing():
 func _end_dialogue():
 	get_tree().paused = false
 	queue_free()
+	
+func set_dialogue_lines(lines):
+	dialogue_lines = lines
+	_display_next_line()

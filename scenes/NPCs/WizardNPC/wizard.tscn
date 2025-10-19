@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp6n7noe2cwev"]
+[gd_scene load_steps=11 format=3 uid="uid://bp6n7noe2cwev"]
 
 [ext_resource type="Script" uid="uid://53j8c25xifvh" path="res://scenes/NPCs/WizardNPC/wizard.gd" id="1_7q3tc"]
 [ext_resource type="Texture2D" uid="uid://flcs2dc1rig3" path="res://assets/art/Pixel Crawler - Free Pack/Entities/Npc's/Wizzard/Idle/Idle-Sheet.png" id="2_jgpsu"]
+[ext_resource type="FontFile" uid="uid://q4du34ot5eei" path="res://assets/fonts/montreal/Montreal-Regular.ttf" id="3_ro5hj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7cokx"]
 radius = 5.5
@@ -59,15 +60,20 @@ position = Vector2(6.811959e-08, 0)
 sprite_frames = SubResource("SpriteFrames_2xpiu")
 animation = &"idle"
 
-[node name="PromptUse" type="Label" parent="."]
-visible = false
-offset_right = 40.0
-offset_bottom = 23.0
-
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_i5uhr")
+
+[node name="PromptUse" type="Label" parent="."]
+offset_left = -62.399998
+offset_top = -53.2
+offset_right = 17.999996
+offset_bottom = -18.2
+theme_override_fonts/font = ExtResource("3_ro5hj")
+theme_override_font_sizes/font_size = 12
+text = "Press \"E\" to interact"
+autowrap_mode = 2
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

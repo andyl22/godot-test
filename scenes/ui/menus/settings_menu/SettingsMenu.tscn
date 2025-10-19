@@ -10,11 +10,13 @@ script = ExtResource("2_jphip")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 45.0
-offset_bottom = 35.0
+offset_right = 379.0
+offset_bottom = 286.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 script = ExtResource("1_2ac8o")
 
 [node name="ResolutionOptionButton" type="OptionButton" parent="VBoxContainer/VBoxContainer"]
@@ -25,13 +27,20 @@ layout_mode = 2
 button_pressed = true
 text = "Fullscreen"
 
-[node name="BackButton" type="Button" parent="VBoxContainer"]
+[node name="EnterApiKey" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
+placeholder_text = "Paste API Key Here"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
 text = "Back"
 
 [connection signal="item_selected" from="VBoxContainer/VBoxContainer/ResolutionOptionButton" to="VBoxContainer/VBoxContainer" method="_on_resolution_option_button_item_selected"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/ResolutionOptionButton" to="VBoxContainer/VBoxContainer" method="_on_resolution_option_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/FullscreenCheckBox" to="VBoxContainer/VBoxContainer" method="_on_fullscreen_check_box_pressed"]
 [connection signal="toggled" from="VBoxContainer/VBoxContainer/FullscreenCheckBox" to="VBoxContainer/VBoxContainer" method="_on_fullscreen_check_box_toggled"]
+[connection signal="text_submitted" from="VBoxContainer/EnterApiKey" to="." method="_on_enter_api_key_text_submitted"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="VBoxContainer" method="_on_back_button_pressed"]

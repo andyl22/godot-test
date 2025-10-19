@@ -5,6 +5,7 @@ signal api_request_completed(result: int, response_code: int, headers: PackedStr
 var http_request: HTTPRequest
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(_on_request_completed)
@@ -13,111 +14,63 @@ func start_api_request(url: String):
 	var error = http_request.request(url)
 	if error != OK:
 		print("Error starting HTTP request: ", error)
+	
+	var result = await http_request.request_completed
+	
+	var status = result[0]
+	var response_code = result[1]
+	var headers = result[2]
+	var body = result[3]
+
+	if status == HTTPRequest.RESULT_SUCCESS:
+		print("Request successful. HTTP Code: ", response_code)
+		var json_text = body.get_string_from_utf8()
+		print("Response body: ", json_text)
+	else:
+		print("Request failed. Result status: ", status)
 		
-func send_post_request(prompt):
-	var data = {
-	  "servingId": {
-		"modelId": {
-		  "model": "<string>",
-		  "serviceProvider": "SERVICE_PROVIDER_UNSPECIFIED"
-		},
-		"userId": "<string>",
-		"sessionId": "<string>"
-	  },
+func send_post_request(prompt, char_context):
+	var base_prompt = "Respond as if you were this character, and be brief as if it were an actual conversation: %s.\n user question/statement to npc: %s"
+	var finalized_prompt_with_context = base_prompt % [char_context, prompt]
+	var payload = {
+	  "model": "meta-llama/llama-3.3-8b-instruct:free",
 	  "messages": [
 		{
-		  "content": "<string>",
-		  "role": "MESSAGE_ROLE_UNSPECIFIED",
-		  "toolCalls": [
-			{
-			  "id": "<string>",
-			  "functionCall": {
-				"name": "<string>",
-				"args": "<string>"
-			  }
-			}
-		  ],
-		  "toolCallId": "<string>",
-		  "name": "<string>",
-		  "textContent": "<string>",
-		  "contentItems": {
-			"contentItems": [
-			  {
-				"text": "<string>",
-				"imageUrl": {
-				  "url": "<string>",
-				  "detail": "<string>"
-				}
-			  }
-			]
-		  }
+		  "role": "user",
+		  "content": finalized_prompt_with_context
 		}
-	  ],
-	  "tools": [
-		{
-		  "functionCall": {
-			"name": "<string>",
-			"description": "<string>",
-			"properties": {}
-		  }
-		}
-	  ],
-	  "toolChoice": {
-		"text": "<string>",
-		"object": {
-		  "functionCall": {
-			"name": "<string>"
-		  }
-		}
-	  },
-	  "textGenerationConfig": {
-		"frequencyPenalty": 123,
-		"logitBias": [
-		  {
-			"tokenId": "<string>",
-			"biasValue": 123
-		  }
-		],
-		"maxTokens": 123,
-		"n": 123,
-		"presencePenalty": 123,
-		"stop": [
-	      "<string>"
-		],
-		"stream": true,
-		"temperature": 123,
-		"topP": 123,
-		"repetitionPenalty": 123,
-		"seed": 123
-	  },
-	  "responseFormat": "RESPONSE_FORMAT_UNSPECIFIED",
-	  "requestTimeout": 123,
-	  "jsonSchema": {
-		"name": "<string>",
-		"description": "<string>",
-		"strict": true,
-		"schema": {}
-	  }
+	  ]
 	}
-	var auth = "test"
-	var json_string = JSON.stringify(data)
-	var body_bytes = json_string.to_utf8_buffer()
 	
+	var auth = ApiConfig.api_key
 	var error = http_request.request(
-		"https://api.inworld.ai/llm/v1alpha/completions:completeChat",
+		"https://openrouter.ai/api/v1/chat/completions",
 		[
 			"Content-Type: application/json",
-			"Authorization: %s" % auth
+			"Authorization: Basic %s" % auth
 		],
 		HTTPClient.METHOD_POST,
-		body_bytes
+		JSON.stringify(payload)
 	)
 	
 	if error != OK:
-		print("Error starting POST request: ", error)
+		print("Error starting HTTP request: ", error)
+	
+	var result = await http_request.request_completed
+	
+	var status = result[0]
+	var response_code = result[1]
+	var headers = result[2]
+	var body = result[3]
+
+	if status == HTTPRequest.RESULT_SUCCESS:
+		print("Request successful. HTTP Code: ", response_code)
+		var json_text = body.get_string_from_utf8()
+		print("Response body: ", json_text)
+	else:
+		print("Request failed. Result status: ", status)
 
 func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
 	api_request_completed.emit(result, response_code, headers, body)
-	
 	if result == HTTPRequest.RESULT_SUCCESS and response_code == 200:
 		var body_text = body.get_string_from_utf8()

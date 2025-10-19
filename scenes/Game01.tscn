@@ -1828,7 +1828,7 @@ position = Vector2(615, 200)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="MainCharacter" parent="." instance=ExtResource("2_hd3ii")]
-position = Vector2(674.00006, 372)
+position = Vector2(729, 390)
 
 [node name="Wizard" parent="." instance=ExtResource("14_wvhdc")]
 position = Vector2(601, 389)

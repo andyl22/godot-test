@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4eodob0im3wq"]
+[gd_scene load_steps=4 format=3 uid="uid://d4eodob0im3wq"]
 
 [ext_resource type="Script" uid="uid://cyt0oicme5sq8" path="res://scenes/ui/chat/box.gd" id="1_nw63w"]
+[ext_resource type="StyleBox" uid="uid://bbkvu02w5f6c8" path="res://scenes/ui/chat/input.tres" id="2_dgt2r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrybh"]
 bg_color = Color(0.9433957, 0.95601386, 0.8411785, 1)
@@ -51,16 +52,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Box/TextureRect/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Box/TextureRect/MarginContainer"]
 layout_mode = 2
+
+[node name="Input" type="LineEdit" parent="Box/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/selection_color = Color(0.5019608, 0.5019608, 0.5019608, 0.52156866)
+theme_override_styles/normal = ExtResource("2_dgt2r")
+theme_override_styles/read_only = ExtResource("2_dgt2r")
+placeholder_text = "Type input"
+
+[node name="ChatText" type="RichTextLabel" parent="Box/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
+
+[connection signal="text_submitted" from="Box/TextureRect/MarginContainer/VBoxContainer/Input" to="." method="_on_input_text_submitted"]

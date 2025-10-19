@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dowad7ccj5e80"]
+[gd_scene load_steps=7 format=3 uid="uid://dowad7ccj5e80"]
 
 [ext_resource type="Script" uid="uid://cw3fteqsclx7k" path="res://scenes/Objects/House/house.gd" id="1_48j7s"]
 [ext_resource type="Texture2D" uid="uid://dcd1sn4sm1s10" path="res://assets/art/TinyFarm/Objects/House.png" id="1_uqlga"]
+[ext_resource type="FontFile" uid="uid://q4du34ot5eei" path="res://assets/fonts/montreal/Montreal-Regular.ttf" id="3_r5kem"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uqlga"]
 
@@ -42,6 +43,7 @@ offset_left = 116.0
 offset_top = 52.0
 offset_right = 185.0
 offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("3_r5kem")
 text = "Press \"E\""
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
